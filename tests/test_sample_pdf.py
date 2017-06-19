@@ -27,23 +27,23 @@ def get_pdf():
     parent_dir = dirname(dirname(abspath(__file__)))
     logo_path = os.path.join(parent_dir, 'statics', 'nci-logo.gif')
     with open(logo_path, 'rb') as image_fd:
-      logo = Image(image_fd)
-    logo.hAlign = 'LEFT'
+        logo = Image(image_fd)
+        logo.hAlign = 'LEFT'
 
-    heading_style = ParagraphStyle(name='heading', fontSize=16, leading=20, spaceAfter=0,
+        heading_style = ParagraphStyle(name='heading', fontSize=16, leading=20, spaceAfter=0,
                                  textColor=HexColor('#ffffff'), backColor=HexColor('#465a81'))
-    heading_right_style = ParagraphStyle(name='heading', fontSize=16, leading=20, spaceAfter=0,
+        heading_right_style = ParagraphStyle(name='heading', fontSize=16, leading=20, spaceAfter=0,
                                        textColor=HexColor('#ffffff'), backColor=HexColor('#465a81'),
                                        alignment=TA_RIGHT)
-    logo_tbl = Table([[logo]], colWidths=sum(col_widths))
-    logo_tbl.hAlign = 'LEFT'
-    logo_tbl.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, -1), HexColor('#B90002'))]))
-    elements.append(logo_tbl)
+        logo_tbl = Table([[logo]], colWidths=sum(col_widths))
+        logo_tbl.hAlign = 'LEFT'
+        logo_tbl.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, -1), HexColor('#B90002'))]))
+        elements.append(logo_tbl)
 
-    # build PDF
-    pdf.build(elements)
-    pdf_string = buffer.getvalue()
-    buffer.close()
+        # build PDF
+        pdf.build(elements)
+        pdf_string = buffer.getvalue()
+        buffer.close()
 
 class TestPDF(unittest.TestCase):
     def test_pdf(self):
